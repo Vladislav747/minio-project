@@ -54,7 +54,7 @@ func (h *Handler) GetFile(w http.ResponseWriter, r *http.Request) error {
 	return nil
 }
 
-//Получить файлы по заметки по UUID
+// Получить файлы по заметки по UUID
 func (h *Handler) GetFilesByNoteUUID(w http.ResponseWriter, r *http.Request) error {
 	h.Logger.Info("GetFilesByNoteUUID")
 	w.Header().Set("Content-Type", "form/json")
@@ -66,13 +66,13 @@ func (h *Handler) GetFilesByNoteUUID(w http.ResponseWriter, r *http.Request) err
 		return apperror.BadRequestError("note_uuid query parameter is required")
 	}
 
-	file, err := h.FileService.GetFilesByNoteUUID(r.Context(), noteUUID)
+	files, err := h.FileService.GetFilesByNoteUUID(r.Context(), noteUUID)
 	if err != nil {
 		return err
 	}
 
 	//Все файлы заворачиваю тут их несколько
-	fileBytes, err := json.Marshal(file)
+	fileBytes, err := json.Marshal(files)
 	if err != nil {
 		return err
 	}
