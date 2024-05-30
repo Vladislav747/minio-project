@@ -46,6 +46,7 @@ func (h *Handler) GetFile(w http.ResponseWriter, r *http.Request) error {
 	}
 
 	w.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s", f.Name))
+	//Отдаем с таким же заголовком которые запрашивали
 	w.Header().Set("Content-Type", r.Header.Get("Content-Type"))
 
 	w.Write(f.Bytes)
