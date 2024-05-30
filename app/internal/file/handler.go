@@ -53,6 +53,7 @@ func (h *Handler) GetFile(w http.ResponseWriter, r *http.Request) error {
 	return nil
 }
 
+//Получить файлы по заметки по UUID
 func (h *Handler) GetFilesByNoteUUID(w http.ResponseWriter, r *http.Request) error {
 	h.Logger.Info("GetFilesByNoteUUID")
 	w.Header().Set("Content-Type", "form/json")
@@ -69,6 +70,7 @@ func (h *Handler) GetFilesByNoteUUID(w http.ResponseWriter, r *http.Request) err
 		return err
 	}
 
+	//Все файлы заворачиваю тут их несколько
 	fileBytes, err := json.Marshal(file)
 	if err != nil {
 		return err
